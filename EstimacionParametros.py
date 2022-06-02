@@ -1,9 +1,8 @@
-import numpy
 import pandas
 import scipy.stats as stats
 import matplotlib.pyplot as plt
 import math
-from sympy import re
+
 
 datosExcel = pandas.read_excel("Tarea3\Conjunto_datos_tarea2.xlsx")
 
@@ -55,3 +54,43 @@ print("desviacion estandar segundo cambio MLE: ", calculo_desviacion_con_MLE()[2
 print("varianza segundo cambio: ", math.pow(calculo_de_desviaciones()[2],2))
 print("varianza segundo cambio MLE: ", math.pow(calculo_desviacion_con_MLE()[2],2))
 print("#########################################################################################################")
+
+
+def crear_grafica(muestra,mle,de,media, nombre):
+    muestra=sorted(muestra)
+    f,p1=plt.subplots(sharex='all')
+    p2=p1.twinx()
+    fit = stats.norm.pdf(muestra,media,de)
+    fit_MLE=stats.norm.pdf(muestra,media,mle)
+    l1,=p2.plot(muestra, fit, '-r')
+    l2,=p2.plot(muestra,fit_MLE,'-g')
+    l1.set_label('analitica')
+    l2.set_label('MLE')
+    p2.legend()
+    p1.hist(muestra,edgecolor="black")
+    p2.set_ylabel("PDF")
+    p1.set_ylabel("Frecuencia de los datos")
+    plt.title("Histograma de Frecuencia "+ nombre)
+    p1.set_xlabel("Rendimiento")
+    plt.show()
+
+crear_grafica(extracion_de_datos()[0],calculo_desviacion_con_MLE()[0],calculo_de_desviaciones()[0],calculo_de_medias()[0],"Inicial")
+crear_grafica(extracion_de_datos()[1],calculo_desviacion_con_MLE()[1],calculo_de_desviaciones()[1],calculo_de_medias()[1],"Primer Cambio")
+crear_grafica(extracion_de_datos()[0],calculo_desviacion_con_MLE()[0],calculo_de_desviaciones()[0],calculo_de_medias()[0],"Segundo Cambio")
+
+
+def crear_grafica_juan(muestra, nombre):
+    muestra=sorted(muestra)
+    f,p1=plt.subplots(sharex='all')
+    p2=p1.twinx()
+    p2.legend()
+    p1.hist(muestra,edgecolor="black")
+    p2.set_ylabel("PDF")
+    p1.set_ylabel("Frecuencia de los datos")
+    plt.title("Histograma de Frecuencia "+ nombre)
+    p1.set_xlabel("Rendimiento")
+    plt.show()
+
+crear_grafica_juan(extracion_de_datos()[0],"Inicial")
+crear_grafica_juan(extracion_de_datos()[1],"Primer Cambio")
+crear_grafica_juan(extracion_de_datos()[0],"Segundo Cambio")
