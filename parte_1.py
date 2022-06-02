@@ -2,9 +2,8 @@ import numpy as np
 from scipy import stats
 import os
 
-#input_dir='C:\Users\AORUS\Documents\TEC\I S 2022\Probabilidad y estadistica\Tarea3\ ' #PATH al archivo de datos, cambiar según cada computadora. Sirve para evitar 'File not found'
-#filename=input_dir+'C:\Users\AORUS\Documents\TEC\I S 2022\Probabilidad y estadistica\Tarea3\Conjunto_datos_tarea2.csv' #modificar segun ciudad asignada
-filename= os.getcwd() + '/Conjunto_datos_tarea2.csv' #modificar segun ciudad asignada
+
+filename= os.getcwd() + '/Conjunto_datos_tarea2.csv' # Cargar datos, colocar codigo junto al archivo de los datos
 
 
 
